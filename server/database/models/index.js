@@ -1,0 +1,1 @@
+export { GacetaModel } from './schemaGaceta'
