@@ -2,14 +2,13 @@ import { Button, Flex, useToast } from "@chakra-ui/react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { LoadingContext } from "../../context/LoadingContext";
+import { AuthContextProvider } from "../../context/AuthContext";
+import { LoadingContextProvider } from "../../context/LoadingContext";
 import InputField from "./InputField";
 
 const FormLogin = () => {
-    const {setLoading} = useContext(LoadingContext)
-    const {setUser} = useContext(AuthContext)
+    const { setLoading } = LoadingContextProvider()
+    const { setUser } = AuthContextProvider()
     const router = useRouter()
     const toast = useToast()
  

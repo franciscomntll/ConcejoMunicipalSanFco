@@ -1,14 +1,13 @@
-import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react"
+import { Container, Flex, Text } from "@chakra-ui/react"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { useContext, useEffect } from "react"
+import { useEffect } from "react"
 import FormLogin from "../components/Forms/FormLogin"
-import { AuthContext } from "../context/AuthContext"
-import { LoadingContext } from "../context/LoadingContext"
+import { AuthContextProvider, LoadingContextProvider } from "../context"
 
 const login = () => {
-    const {user} = useContext(AuthContext)
-    const {setLoading} = useContext(LoadingContext)
+    const {user} = AuthContextProvider()
+    const {setLoading} = LoadingContextProvider()
     const router = useRouter()
     const redirect = async () => {
     user || localStorage.getItem("authConcejo") && (await router.push("/dashboard"));

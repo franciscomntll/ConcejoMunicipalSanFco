@@ -1,16 +1,15 @@
 import { Box, Flex } from "@chakra-ui/react";
 import React, {
-  useContext,
   useEffect,
   useReducer,
   useRef,
   useState,
 } from "react";
-import { WidthContext } from "../../context/WidthContext";
+import { WidthContextProvider } from "../../context";
 
 const index = ({ children, items, ...props }) => {
   const [autoplay, setAutoplay] = useState(false);
-  const { width: show } = useContext(WidthContext);
+  const { width: show } = WidthContextProvider();
   const [width, setWidth] = useState("");
   const [state, dispatch] = useReducer(reducer, {
     currentIndex: 0,

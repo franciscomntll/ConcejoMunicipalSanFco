@@ -1,11 +1,9 @@
-import Navigation from "../components/Navigation";
 import { Box, Grid, Flex, Heading, Text } from "@chakra-ui/layout";
-import { Avatar, Button } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
-import { WidthContext, WidthContextProvider } from "../context/WidthContext";
+import { Button } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { AuthContextProvider } from "../context/AuthContext";
-import { LoadingContextProvider } from "../context/LoadingContext";
+import { LoadingProvider, AuthProvider, WidthProvider, WidthContextProvider } from "../context";
+import Navigation from "../components/Navigation";
 import NavigationMobile from "../components/NavigationMobile";
 
 const DefaultLayout = ({ children }) => {
@@ -15,9 +13,9 @@ const DefaultLayout = ({ children }) => {
     router.asPath === "/" ? setShow(true) : setShow(false);
   }, [router.asPath]);
   return (
-    <AuthContextProvider>
-      <LoadingContextProvider>
-        <WidthContextProvider>
+    <AuthProvider>
+      <LoadingProvider>
+        <WidthProvider>
           <Flex
             flexDirection={["column", "row"]}
             bg={"gray.100"}
@@ -37,16 +35,16 @@ const DefaultLayout = ({ children }) => {
               {children}
             </Grid>
           </Flex>
-        </WidthContextProvider>
-      </LoadingContextProvider>
-    </AuthContextProvider>
+        </WidthProvider>
+      </LoadingProvider>
+    </AuthProvider>
   );
 };
 
 export default DefaultLayout;
 
 const BannerPrincipal = () => {
-  const { width, setWidth } = useContext(WidthContext);
+  const { width, setWidth } = WidthContextProvider();
 
   return (
     <Box

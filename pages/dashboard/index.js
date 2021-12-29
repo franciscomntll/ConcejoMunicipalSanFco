@@ -1,13 +1,7 @@
-import { AddIcon, PlusSquareIcon } from "@chakra-ui/icons";
+import { AddIcon } from "@chakra-ui/icons";
 import {
   Button,
-  Flex,
   Container,
-  Input,
-  Grid,
-  GridItem,
-  List,
-  ListItem,
   Heading,
   Tooltip,
   Tabs,
@@ -15,14 +9,7 @@ import {
   Tab,
   TabPanels,
   TabPanel,
-  Modal,
   useDisclosure,
-  ModalOverlay,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
-  ModalContent,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useMemo, useState } from "react";
@@ -30,13 +17,12 @@ import Datatable from "../../components/Datatable";
 import Actions from "../../components/Datatable/CustomCells/Actions";
 import FormGaceta from "../../components/Forms/FormGaceta";
 import ModalFormGaceta from "../../components/Modal/ModalFormGaceta";
-import { AuthContext } from "../../context/AuthContext";
-import { LoadingContext } from "../../context/LoadingContext";
+import { AuthContextProvider, LoadingContextProvider } from "../../context";
 
 const index = () => {
   const router = useRouter();
-  const { user } = useContext(AuthContext);
-  const { setLoading } = useContext(LoadingContext);
+  const { user } = AuthContextProvider()
+  const { setLoading } = LoadingContextProvider();
   const [selected, setSelect] = useState(null);
   const {isOpen, onOpen, onClose} = useDisclosure()
 

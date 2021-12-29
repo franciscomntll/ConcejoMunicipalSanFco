@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useContext, useState } from "react"
 import LoadingLayout from "../layouts/LoadingLayout"
 
 const initialContext = {
@@ -7,7 +7,7 @@ const initialContext = {
 }
 const LoadingContext = createContext(initialContext)
 
-const LoadingContextProvider = ({children}) => {
+const LoadingProvider = ({children}) => {
     const [loading, setLoading] = useState(initialContext.loading)
     return (
         <LoadingContext.Provider value={{loading, setLoading}}>
@@ -18,6 +18,6 @@ const LoadingContextProvider = ({children}) => {
 }
 
 
+const LoadingContextProvider = () => useContext(LoadingContext)
 
-
-export {LoadingContext, LoadingContextProvider}
+export {LoadingProvider, LoadingContextProvider}

@@ -1,4 +1,4 @@
-import { Flex, Text, Box } from "@chakra-ui/layout";
+import { Flex, Text } from "@chakra-ui/layout";
 import {
   Avatar,
   Button,
@@ -6,23 +6,21 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  StatDownArrow,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { MenuIcon, UserIcon } from "../icons";
+import { useEffect } from "react";
+import { UserIcon } from "../icons";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { WidthContext } from "../../context/WidthContext";
-import { LoadingContext } from "../../context/LoadingContext";
+import { AuthContextProvider, WidthContextProvider, LoadingContextProvider } from "../../context";
 
 const Navigation = () => {
-  const { user } = useContext(AuthContext);
-  const {width} = useContext(WidthContext)
-  const {setLoading} = useContext(LoadingContext)
+  const { user } = AuthContextProvider();
+  const { width } = WidthContextProvider();
+  const { setLoading } = LoadingContextProvider();
   const router = useRouter();
+
   const handleSignOut = () => {
     const auth = getAuth();
     localStorage.removeItem("authConcejo");
@@ -40,6 +38,7 @@ const Navigation = () => {
       }
   
   }, [router.asPath])
+  
   return (
     <Flex
       alignItems={"center"}

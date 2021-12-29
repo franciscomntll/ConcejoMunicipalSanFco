@@ -6,7 +6,7 @@ const initialContext = {
 }
 const WidthContext = createContext(initialContext)
 
-const WidthContextProvider = ({children}) => {
+const WidthProvider = ({children}) => {
     const [width, setWidth] = useState(initialContext.width)
     return (
         <WidthContext.Provider value={{width, setWidth}}>
@@ -16,6 +16,6 @@ const WidthContextProvider = ({children}) => {
 }
 
 
+const WidthContextProvider = () => useContext(WidthContext)
 
-
-export {WidthContext, WidthContextProvider}
+export {WidthProvider, WidthContextProvider}

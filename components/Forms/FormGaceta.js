@@ -1,4 +1,4 @@
-import { AddIcon, DownloadIcon, UpDownIcon } from "@chakra-ui/icons";
+import { DownloadIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -7,16 +7,10 @@ import {
   Grid,
   GridItem,
   Input,
-  List,
-  ListItem,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Select,
-  SelectField,
-  Textarea,
   Text,
+  Badge,
+  useToast,
 } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import { FieldArray, Form, Formik } from "formik";
@@ -33,7 +27,7 @@ const FormGaceta = () => {
     publishDate: dayjs().format("YYYY-MM-DD"),
   };
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    setLoading
   };
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -85,6 +79,7 @@ const FormGaceta = () => {
 export default FormGaceta;
 
 const SumaryComponent = () => {
+  const toast = useToast()
   const initialValues = {
     type: "",
     title: "",
@@ -95,8 +90,17 @@ const SumaryComponent = () => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
   const handleClick = (helpers) => {
-    helpers.push(value);
-    setValue(initialValues);
+    if(value.type && value.title && value.date){
+      helpers.push(value);
+      setValue(initialValues);
+    } else {
+      toast({
+        status: "warning",
+        description: "Favor rellenar todos los campos del sumario",
+        isClosable: true,
+        position: "top-right"
+      })
+    }
   };
   return (
     <Flex flexDir={"column"}>
@@ -114,6 +118,7 @@ const SumaryComponent = () => {
                   </option>
                   <option value={"ordenanza"}>Ordenanza</option>
                   <option value={"decreto"}>Decreto</option>
+                  <option value={"resolucion"}>Resolución</option>
                   <option value={"acta"}>Acta de sesión</option>
                 </Select>
                 <Input
@@ -139,22 +144,20 @@ const SumaryComponent = () => {
                   </Button>
                 </Flex>
               </Flex>
-              <List paddingBlock={"0.5rem"}>
+              <Flex flexDir={"column"} gap={"0.5rem"} padding={"0.5rem"}>
                 {arrayHelpers?.form?.values?.sumary?.map((item, idx) => {
-                  const data = Object.values(item);
                   return (
-                    <ListItem
-                      key={idx}
-                      listStylePos={"inside"}
-                      listStyleType={"initial"}
-                    >
-                      {data.map((item, idx) => (
-                        <span>{item} </span>
-                      ))}
-                    </ListItem>
+                    <Flex alignItems={"center"} flexDir={"column"} gap={"0.5rem"}>
+                      <Flex alignItems={"center"} gap={"0.5rem"}>
+                      <Badge bg={"green.300"}>{item.type}</Badge>
+                      <Badge>{item.date}</Badge>
+                      </Flex>
+                      <Text fontSize="sm">{item.title}</Text>
+                      
+                    </Flex>
                   );
                 })}
-              </List>
+              </Flex>
             </>
           );
         }}

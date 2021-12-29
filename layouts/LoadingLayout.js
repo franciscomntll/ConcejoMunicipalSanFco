@@ -1,4 +1,4 @@
-import { Container, Flex, Spinner, Text } from "@chakra-ui/react"
+import { Flex, Spinner, Text } from "@chakra-ui/react"
 import Image from "next/image"
 
 const LoadingLayout = () => {

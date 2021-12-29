@@ -20,12 +20,7 @@ const ModalFormGaceta = (props) => {
         <ModalBody>
             <FormGaceta />
         </ModalBody>
-        <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={props.onClose}>
-            Close
-          </Button>
-          <Button variant="ghost">Secondary Action</Button>
-        </ModalFooter>
+        <ModalFooter/>
       </ModalContent>
     </Modal>
   );

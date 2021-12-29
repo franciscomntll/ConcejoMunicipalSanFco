@@ -8,7 +8,7 @@ const initialContext = {
 }
 const AuthContext = createContext(initialContext)
 
-const AuthContextProvider = ({children}) => {
+const AuthProvider = ({children}) => {
     const [user, setUser] = useState(initialContext.user)
 
     useEffect(() => {
@@ -27,6 +27,6 @@ const AuthContextProvider = ({children}) => {
 }
 
 
+const AuthContextProvider = () => useContext(AuthContext)
 
-
-export {AuthContext, AuthContextProvider}
+export {AuthProvider, AuthContextProvider}
