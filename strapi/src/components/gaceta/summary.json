@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_gaceta_summaries",
+  "info": {
+    "displayName": "summary",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ordenanza",
+        "decreto",
+        "acta"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "identification": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "summaries",
+  "info": {
+    "singularName": "summary",
+    "pluralName": "summaries",
+    "displayName": "Sumarios",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "identification": {
+      "type": "string",
+      "unique": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ordenanza",
+        "decreto",
+        "acta"
+      ],
+      "required": true
+    },
+    "date": {
+      "type": "date"
+    },
+    "gaceta_municipal": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::gaceta.gaceta",
+      "inversedBy": "summaries"
+    }
+  }
+}

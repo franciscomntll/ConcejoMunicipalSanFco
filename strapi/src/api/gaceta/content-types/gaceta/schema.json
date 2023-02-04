@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gacetas",
+  "info": {
+    "singularName": "gaceta",
+    "pluralName": "gacetas",
+    "displayName": "Gaceta Municipal",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "number": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "summaries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::summary.summary",
+      "mappedBy": "gaceta_municipal"
+    }
+  }
+}
