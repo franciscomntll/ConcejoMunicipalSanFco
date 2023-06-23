@@ -1,0 +1,10 @@
+export { DataTable } from "@components/DataTable";
+export { Card } from "@components/Card";
+export { GridGacetas } from "@components/GridGacetas";
+export { Navigation } from "@components/Navigation";
+export { PrincipalBanner } from "@components/PrincipalBanner";
+export { SectionBlock } from "@components/SectionBlock";
+export { Switch } from "@components/Switch";
+export { TagOnline } from "@components/TagOnline";
+export { YoutubeBlock } from "@components/YoutubeBlock";
+export { Pagination } from "@components/Pagination";
